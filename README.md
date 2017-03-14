@@ -14,14 +14,11 @@ Assignment 1 for ISCG7436 iOS Development
 
 Optional:
 
-- Colour picker.
 - Rubber.
-- Curved lines
 - Work Universally (iOS mobiles and Tablets)
-- Save to PNG or JPG.
+- Save to Photo Album.
 
 
 Must be made in XCode.
-Must use certain features. [???]
 
 
