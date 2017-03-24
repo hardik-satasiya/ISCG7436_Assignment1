@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIAlertViewDelegate {
     
     //MARK: properties
     var startLocation : CGPoint = CGPointFromString("0")
@@ -42,8 +42,6 @@ class ViewController: UIViewController {
         toolSelector .selectedSegmentIndex = 0
         
         drawingArea.layer.borderColor = UIColor.black.cgColor
-        
-        print("ready.")
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,6 +111,24 @@ class ViewController: UIViewController {
      *  should result in blank drawing.
      */
     @IBAction func clearDrawings(_ sender: UIButton) {
+        let alertView = UIAlertController(title : "Remove All Drawings", message : "Are you sure?", preferredStyle: .alert)
+        
+        alertView.addAction( UIAlertAction( title : "No",  style : .cancel, handler : nil ))
+        alertView.addAction( UIAlertAction( title : "Yes", style : .destructive)
+        { (action) in
+            // remove all drawings
+            for layer in self.view .layer.sublayers!
+            {
+                if layer is CAShapeLayer
+                {
+                    layer.removeFromSuperlayer()
+                }
+            }
+        })
+        
+        self.present(alertView, animated: true, completion: nil)
+        
+        /*
         for layer in self.view .layer.sublayers!
         {
             
@@ -122,6 +138,7 @@ class ViewController: UIViewController {
                 layer.removeFromSuperlayer()
             }
         }
+        */
         
         trashButton.isEnabled = false
     }

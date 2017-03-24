@@ -14,7 +14,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Assignment1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -25,10 +24,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="t3R-Nz-n7g">
-                                <rect key="frame" x="35" y="295" width="612" height="60"/>
+                                <rect key="frame" x="35" y="295" width="342" height="33"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-F7-KnV">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="61"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="132" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="HLg-F7-KnV" secondAttribute="height" multiplier="4:1" id="FRA-TF-cnI"/>
                                         </constraints>
@@ -43,7 +42,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="exM-Ra-0lH">
-                                        <rect key="frame" x="246" y="0.0" width="300" height="61"/>
+                                        <rect key="frame" x="138" y="0.0" width="165" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="exM-Ra-0lH" secondAttribute="height" multiplier="5:1" id="nyr-Rh-Qce"/>
                                         </constraints>
@@ -59,7 +58,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-qX-kZr">
-                                        <rect key="frame" x="552" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="309" y="0.0" width="33" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nrK-qX-kZr" secondAttribute="height" multiplier="1:1" id="kiV-RW-tEB"/>
                                             <constraint firstAttribute="height" constant="60" id="mK9-wu-B2b"/>
@@ -71,7 +70,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Nec-fi-JJp"/>
+                                    <constraint firstAttribute="height" constant="33" id="Nec-fi-JJp"/>
                                 </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hob-Bj-pfg">
@@ -99,6 +98,7 @@
                         <outlet property="trashButton" destination="nrK-qX-kZr" id="tqK-rd-U4P"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="8SD-5s-fOb">
                     <connections>
                         <action selector="handlePanGestureDrawing:" destination="BYZ-38-t0r" id="ytq-e4-7RG"/>
