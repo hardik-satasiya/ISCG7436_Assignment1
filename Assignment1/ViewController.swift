@@ -131,6 +131,52 @@ class ViewController: UIViewController {
         
         let location : CGPoint = sender .location(in: sender.view)
         
+        // from  the current gesture location, correct it to within a drawing boundary
+        func correctLocationToWithinDrawbounds( currentLocation: CGPoint, boundaries: CGRect) -> CGPoint {
+            var correctedLocation : CGPoint?
+            correctedLocation = currentLocation
+            if !boundaries .contains( currentLocation )
+            {
+                if currentLocation.x > boundaries.maxX {
+                    correctedLocation!.x = boundaries.maxX
+                }
+                else if currentLocation.x < boundaries.minX {
+                    correctedLocation!.x = boundaries.minX
+                }
+                
+                if currentLocation.y > boundaries.maxY {
+                    correctedLocation!.y  = boundaries.maxY
+                }
+                else if currentLocation.y < boundaries.minY {
+                    correctedLocation!.y = boundaries.minY
+                }
+            }
+
+            return correctedLocation!
+        }
+        
+        // from a given translation from a point, correct it to remain within a drawing boundary
+        func correctTranslationToWithinDrawbounds( origin: CGPoint, currentTranslation: CGPoint, boundaries: CGRect) -> CGPoint {
+            var correctedTranslation : CGPoint?
+            correctedTranslation = currentTranslation
+            
+            if currentTranslation.x + origin.x > boundaries.maxX {
+                correctedTranslation!.x = boundaries.maxX - origin.x
+            }
+            else if currentTranslation.x + origin.x < boundaries.minX {
+                correctedTranslation!.x = boundaries.minX - origin.x
+            }
+                
+            if currentTranslation.y + origin.y > boundaries.maxY {
+                correctedTranslation!.y  = boundaries.maxY - origin.y
+            }
+            else if currentTranslation.y + origin.y < boundaries.minY {
+                correctedTranslation!.y = boundaries.minY - origin.y
+            }
+            
+            return correctedTranslation!
+        }
+        
         // only start drawing shapes if beginning inside the drawing area.
         if sender .state == .began && drawingArea.frame .contains( location )
         {
@@ -150,8 +196,7 @@ class ViewController: UIViewController {
             {
             case Tools .pencil:
                 currentPath = UIBezierPath( )
-                lastPoint = startLocation
-                currentPath!.move(to: lastPoint!)
+                currentPath!.move(to: startLocation)
                 layer? .strokeColor = selectedFillColor .getColor()
 
                 
@@ -161,7 +206,6 @@ class ViewController: UIViewController {
                 
             default:
                 break;
-
             }
             
             // indicate it's ok to continue drawing
@@ -181,25 +225,8 @@ class ViewController: UIViewController {
         else if sender .state == .changed && isShapeEndPointWithinDrawingBounds
         {
             let translation = sender.translation(in: sender.view)
-            var translationCorrected : CGPoint = translation
-            
-            // only draw to the draw Area bounds, but keep drawing the shape
-            if !drawingArea.frame .contains( location )
-            {
-                if translation.x + startLocation.x > drawingArea.frame.maxX {
-                    translationCorrected.x = drawingArea.frame.maxX - startLocation.x
-                }
-                else if translation.x + startLocation.x < drawingArea.frame.minX {
-                    translationCorrected.x = drawingArea.frame.minX - startLocation.x
-                }
-                
-                if translation.y + startLocation.y > drawingArea.frame.maxY {
-                    translationCorrected.y  = drawingArea.frame.maxY - startLocation.y
-                }
-                else if translation.y + startLocation.y < drawingArea.frame.minY {
-                    translationCorrected.y = drawingArea.frame.minY - startLocation.y
-                }
-            }
+            let correctedLocation : CGPoint = correctLocationToWithinDrawbounds(currentLocation : location, boundaries : drawingArea .frame)
+            let correctedTranslation : CGPoint = correctTranslationToWithinDrawbounds( origin : startLocation, currentTranslation: translation, boundaries: drawingArea .frame)
             
             // draw the shape for the selected tool
             switch selectedTool
@@ -208,43 +235,21 @@ class ViewController: UIViewController {
             case Tools .oval:
                 currentPath = (UIBezierPath( ovalIn:
                     CGRect( x : startLocation .x, y : startLocation .y,
-                            width : translationCorrected .x, height : translationCorrected .y )))
+                            width : correctedTranslation .x, height : correctedTranslation .y )))
                 
             case Tools .rectangle:
                 currentPath = (UIBezierPath( rect:
                     CGRect( x : startLocation .x, y : startLocation .y,
-                            width : translationCorrected .x, height : translationCorrected .y )))
+                            width : correctedTranslation .x, height : correctedTranslation .y )))
                 
             case Tools .pencil:
-                var correctedLocation : CGPoint?
-                correctedLocation = location
-                if !drawingArea.frame .contains( location )
-                {
-                    if location.x > drawingArea.frame.maxX {
-                        correctedLocation!.x = drawingArea.frame.maxX
-                    }
-                    else if location.x < drawingArea.frame.minX {
-                        correctedLocation!.x = drawingArea.frame.minX
-                    }
-                    
-                    if location.y > drawingArea.frame.maxY {
-                        correctedLocation!.y  = drawingArea.frame.maxY
-                    }
-                    else if location.y < drawingArea.frame.minY {
-                        correctedLocation!.y = drawingArea.frame.minY
-                    }
-                }
-                var currentPoint : CGPoint = correctedLocation!
-                
-                currentPath!.addLine(to: currentPoint)
-                lastPoint = currentPoint
-                currentPath!.move(to: lastPoint!)
+                currentPath!.addLine(to: correctedLocation)
+                currentPath!.move(to: correctedLocation)
                 
             case Tools .line:
                 currentPath = UIBezierPath( )
                 currentPath!.move(to: startLocation)
-                currentPath!.addLine(to: CGPoint( x : startLocation.x + translationCorrected.x,
-                                                  y : startLocation.y + translationCorrected.y ))
+                currentPath!.addLine(to: correctedLocation)
             }
             
             
