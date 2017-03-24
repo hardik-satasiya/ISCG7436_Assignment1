@@ -13,18 +13,27 @@ class ViewController: UIViewController {
     //MARK: properties
     var startLocation : CGPoint = CGPointFromString("0")
     var layer : CAShapeLayer?
+    
+    // used for drawing freeform (pencil). Remember over time where last freeform point was, to draw to new freeform point.
+    var lastPoint : CGPoint?
+    var currentPoint : CGPoint?
+    
+    // if drawing with pencil, need to remember the path over time.
+    var currentPath : UIBezierPath?
+    
     var selectedFillColor : Colors = Colors .red
-    var selectedTool : Tools = Tools .rectangle
+    var selectedTool : Tools = Tools .pencil
     
-    var isDrawingAllowed : Bool = false
+    var isShapeEndPointWithinDrawingBounds : Bool = false
     
+    // MARK: outlets
     @IBOutlet weak var colorSelector : UISegmentedControl!
     @IBOutlet weak var trashButton : UIButton!
     @IBOutlet weak var toolSelector : UISegmentedControl!
     @IBOutlet weak var drawingArea : UIImageView!
     
     
-    //MARK: methods
+    //MARK: view methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -43,7 +52,12 @@ class ViewController: UIViewController {
     }
     
     //MARK: UI methods
+    
+    /***
+     *   select the colour to fill shapes with
+     */
     @IBAction func chooseColor(_ sender: UISegmentedControl) {
+        
         switch colorSelector.selectedSegmentIndex
         {
             
@@ -66,10 +80,11 @@ class ViewController: UIViewController {
             selectedFillColor = Colors .red
             
         }
-        
-        print ("chosen color = \(selectedFillColor)")
     }
     
+    /***
+     *   select which tool, and thus which shape, for drawing.
+     */
     @IBAction func chooseTool(_ sender: UISegmentedControl) {
         switch toolSelector.selectedSegmentIndex
         {
@@ -90,11 +105,13 @@ class ViewController: UIViewController {
             selectedTool = Tools .oval
             
         }
-        
-        print ("chosen Tool = \(selectedTool)")
     }
     
-    
+    /**
+     *  remove all sublayers from the drawing space.
+     *  
+     *  should result in blank drawing.
+     */
     @IBAction func clearDrawings(_ sender: UIButton) {
         for layer in self.view .layer.sublayers!
         {
@@ -114,11 +131,6 @@ class ViewController: UIViewController {
         
         let location : CGPoint = sender .location(in: sender.view)
         
-        var lastPoint : CGPoint?
-        var currentPoint : CGPoint?
-        
-        print ("within drawing area = \( drawingArea.frame.contains( location ))")
-        
         // only start drawing shapes if beginning inside the drawing area.
         if sender .state == .began && drawingArea.frame .contains( location )
         {
@@ -134,8 +146,26 @@ class ViewController: UIViewController {
             
             trashButton .isEnabled = true
             
+            switch selectedTool
+            {
+            case Tools .pencil:
+                currentPath = UIBezierPath( )
+                lastPoint = startLocation
+                currentPath!.move(to: lastPoint!)
+                layer? .strokeColor = selectedFillColor .getColor()
+
+                
+            // otherwise line will always be black
+            case Tools .line:
+                layer? .strokeColor = selectedFillColor .getColor()
+                
+            default:
+                break;
+
+            }
+            
             // indicate it's ok to continue drawing
-            isDrawingAllowed = true
+            isShapeEndPointWithinDrawingBounds = true
             
         }
         
@@ -143,71 +173,82 @@ class ViewController: UIViewController {
         else if sender .state == .began && !drawingArea.frame .contains( location )
         {
             // indicate to not allow continued drawing
-            isDrawingAllowed = false
+            isShapeEndPointWithinDrawingBounds = false
 
         }
         
         // if continuing drawing and permitted to do so
-        else if sender .state == .changed && isDrawingAllowed
+        else if sender .state == .changed && isShapeEndPointWithinDrawingBounds
         {
             let translation = sender.translation(in: sender.view)
             var translationCorrected : CGPoint = translation
             
-            //TODO: fix this
-            // if pan is outside the draw Area, only draw to the draw Area bounds
+            // only draw to the draw Area bounds, but keep drawing the shape
             if !drawingArea.frame .contains( location )
             {
-                if translation.x > drawingArea.frame.maxX {
-                    translationCorrected.x = drawingArea.frame.maxX
+                if translation.x + startLocation.x > drawingArea.frame.maxX {
+                    translationCorrected.x = drawingArea.frame.maxX - startLocation.x
                 }
-                else if translation.x < drawingArea.frame.minX {
-                    translationCorrected.x = drawingArea.frame.minX
+                else if translation.x + startLocation.x < drawingArea.frame.minX {
+                    translationCorrected.x = drawingArea.frame.minX - startLocation.x
                 }
                 
-                if translation.y > drawingArea.frame.maxY {
-                    translationCorrected.y = drawingArea.frame.maxY
+                if translation.y + startLocation.y > drawingArea.frame.maxY {
+                    translationCorrected.y  = drawingArea.frame.maxY - startLocation.y
                 }
-                else if translation.y < drawingArea.frame.minY {
-                    translationCorrected.y = drawingArea.frame.minY
+                else if translation.y + startLocation.y < drawingArea.frame.minY {
+                    translationCorrected.y = drawingArea.frame.minY - startLocation.y
                 }
             }
             
-            print("translation = \(translation), maxX = \(drawingArea.frame.maxX), maxY = \(drawingArea.frame.maxY), minX = \(drawingArea.frame.minX), minY = \(drawingArea.frame.minY)")
-            
+            // draw the shape for the selected tool
             switch selectedTool
             {
                 
             case Tools .oval:
-                layer? .path = (UIBezierPath( ovalIn:
+                currentPath = (UIBezierPath( ovalIn:
                     CGRect( x : startLocation .x, y : startLocation .y,
                             width : translationCorrected .x, height : translationCorrected .y )))
-                    .cgPath
                 
             case Tools .rectangle:
-                layer? .path = (UIBezierPath( rect:
+                currentPath = (UIBezierPath( rect:
                     CGRect( x : startLocation .x, y : startLocation .y,
                             width : translationCorrected .x, height : translationCorrected .y )))
-                    .cgPath
                 
             case Tools .pencil:
-                layer? .path = (UIBezierPath( rect:
-                    CGRect( x : startLocation .x, y : startLocation .y,
-                            width : translationCorrected .x, height : translationCorrected .y )))
-                    .cgPath
+                var correctedLocation : CGPoint?
+                correctedLocation = location
+                if !drawingArea.frame .contains( location )
+                {
+                    if location.x > drawingArea.frame.maxX {
+                        correctedLocation!.x = drawingArea.frame.maxX
+                    }
+                    else if location.x < drawingArea.frame.minX {
+                        correctedLocation!.x = drawingArea.frame.minX
+                    }
+                    
+                    if location.y > drawingArea.frame.maxY {
+                        correctedLocation!.y  = drawingArea.frame.maxY
+                    }
+                    else if location.y < drawingArea.frame.minY {
+                        correctedLocation!.y = drawingArea.frame.minY
+                    }
+                }
+                var currentPoint : CGPoint = correctedLocation!
+                
+                currentPath!.addLine(to: currentPoint)
+                lastPoint = currentPoint
+                currentPath!.move(to: lastPoint!)
                 
             case Tools .line:
-                layer? .path = (UIBezierPath( rect:
-                    CGRect( x : startLocation .x, y : startLocation .y,
-                            width : translationCorrected .x, height : translationCorrected .y )))
-                    .cgPath
-                
-            default:
-                layer? .path = (UIBezierPath( ovalIn:
-                    CGRect( x : startLocation .x, y : startLocation .y,
-                            width : translationCorrected .x, height : translationCorrected .y )))
-                    .cgPath
-                
+                currentPath = UIBezierPath( )
+                currentPath!.move(to: startLocation)
+                currentPath!.addLine(to: CGPoint( x : startLocation.x + translationCorrected.x,
+                                                  y : startLocation.y + translationCorrected.y ))
             }
+            
+            
+            layer? .path = currentPath?.cgPath
         }
     }
 }
