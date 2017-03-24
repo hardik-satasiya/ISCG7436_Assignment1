@@ -14,11 +14,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="SXI-we-zXE">
-                    <connections>
-                        <action selector="panGestureHandler:" destination="BYZ-38-t0r" id="w2N-JJ-zOM"/>
-                    </connections>
-                </panGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Assignment1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
@@ -30,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="t3R-Nz-n7g">
-                                <rect key="frame" x="183" y="245" width="612" height="60"/>
+                                <rect key="frame" x="35" y="295" width="612" height="60"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-F7-KnV">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="61"/>
@@ -79,24 +74,38 @@
                                     <constraint firstAttribute="height" constant="60" id="Nec-fi-JJp"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hob-Bj-pfg">
+                                <rect key="frame" x="20" y="36" width="627" height="243"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="hob-Bj-pfg" secondAttribute="trailing" id="2ly-Ct-Zfx"/>
+                            <constraint firstItem="t3R-Nz-n7g" firstAttribute="top" secondItem="hob-Bj-pfg" secondAttribute="bottom" constant="20" id="Y6F-sy-o1L"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t3R-Nz-n7g" secondAttribute="bottom" constant="20" id="ZFT-BW-EwG"/>
+                            <constraint firstItem="hob-Bj-pfg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="gTU-KV-cKc"/>
+                            <constraint firstItem="hob-Bj-pfg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rb2-OQ-Zr9"/>
                             <constraint firstItem="t3R-Nz-n7g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yJJ-bV-kEp"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="SXI-we-zXE" appends="YES" id="bp8-OT-8AN"/>
+                            <outletCollection property="gestureRecognizers" destination="8SD-5s-fOb" appends="YES" id="iQW-Ic-w3R"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="colorSelector" destination="exM-Ra-0lH" id="hDN-Dm-7TH"/>
+                        <outlet property="drawingArea" destination="hob-Bj-pfg" id="ZZ9-B4-uBm"/>
                         <outlet property="toolSelector" destination="HLg-F7-KnV" id="YDM-CT-Sdc"/>
                         <outlet property="trashButton" destination="nrK-qX-kZr" id="tqK-rd-U4P"/>
                     </connections>
                 </viewController>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="8SD-5s-fOb">
+                    <connections>
+                        <action selector="handlePanGestureDrawing:" destination="BYZ-38-t0r" id="ytq-e4-7RG"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="25.637181409295355" y="23.199999999999999"/>
         </scene>
     </scenes>
 </document>
