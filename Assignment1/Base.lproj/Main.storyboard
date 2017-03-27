@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,64 +24,93 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="t3R-Nz-n7g">
-                                <rect key="frame" x="35" y="295" width="342" height="33"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hob-Bj-pfg">
+                                <rect key="frame" x="20" y="36" width="627" height="266"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="t3R-Nz-n7g">
+                                <rect key="frame" x="20" y="317.5" width="387.5" height="37.5"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-F7-KnV">
-                                        <rect key="frame" x="0.0" y="0.0" width="132" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="38.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="HLg-F7-KnV" secondAttribute="height" multiplier="4:1" id="FRA-TF-cnI"/>
                                         </constraints>
                                         <segments>
-                                            <segment title="Pencil"/>
-                                            <segment title="Rect"/>
-                                            <segment title="Oval"/>
-                                            <segment title="Line"/>
+                                            <segment title="" image="pencil.png"/>
+                                            <segment title="" image="rect.png"/>
+                                            <segment title="" image="oval.png"/>
+                                            <segment title="" image="line.png"/>
                                         </segments>
                                         <connections>
                                             <action selector="chooseTool:" destination="BYZ-38-t0r" eventType="valueChanged" id="KZU-TB-dJU"/>
                                         </connections>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="exM-Ra-0lH">
-                                        <rect key="frame" x="138" y="0.0" width="165" height="34"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-HE-zgr">
+                                        <rect key="frame" x="156" y="0.0" width="188" height="37.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTh-wB-TzT">
+                                                <rect key="frame" x="0.0" y="0.0" width="37.5" height="37.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="lTh-wB-TzT" secondAttribute="height" multiplier="1:1" id="prj-r7-FL8"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="redcolor.png"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIc-HT-tOE">
+                                                <rect key="frame" x="37.5" y="0.0" width="37.5" height="37.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="SIc-HT-tOE" secondAttribute="height" multiplier="1:1" id="4Hg-P7-pbi"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="yellowcolor.png"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxq-qP-NTl">
+                                                <rect key="frame" x="75" y="0.0" width="37.5" height="37.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Wxq-qP-NTl" secondAttribute="height" multiplier="1:1" id="v4s-3o-AzE"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="greencolor.png"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgG-Z2-CJL">
+                                                <rect key="frame" x="112.5" y="0.0" width="38" height="37.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="WgG-Z2-CJL" secondAttribute="height" multiplier="1:1" id="5B4-Y2-FAJ"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="bluecolor.png"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2i-cy-j7O">
+                                                <rect key="frame" x="150.5" y="0.0" width="37.5" height="37.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="w2i-cy-j7O" secondAttribute="height" multiplier="1:1" id="lOJ-Y1-gaZ"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="purplecolor.png"/>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="exM-Ra-0lH" secondAttribute="height" multiplier="5:1" id="nyr-Rh-Qce"/>
+                                            <constraint firstItem="WgG-Z2-CJL" firstAttribute="height" secondItem="lTh-wB-TzT" secondAttribute="height" id="4W1-yA-Mlf"/>
+                                            <constraint firstItem="SIc-HT-tOE" firstAttribute="height" secondItem="lTh-wB-TzT" secondAttribute="height" id="7Eg-H2-So1"/>
+                                            <constraint firstItem="w2i-cy-j7O" firstAttribute="height" secondItem="lTh-wB-TzT" secondAttribute="height" id="CeJ-qP-2FA"/>
+                                            <constraint firstItem="Wxq-qP-NTl" firstAttribute="height" secondItem="lTh-wB-TzT" secondAttribute="height" id="Xcg-Q5-SMa"/>
+                                            <constraint firstAttribute="width" secondItem="gxe-HE-zgr" secondAttribute="height" multiplier="5:1" id="aLl-14-UmZ"/>
+                                            <constraint firstItem="lTh-wB-TzT" firstAttribute="height" secondItem="gxe-HE-zgr" secondAttribute="height" id="ayn-AF-lYm"/>
                                         </constraints>
-                                        <segments>
-                                            <segment title="Red"/>
-                                            <segment title="Yellow"/>
-                                            <segment title="Green"/>
-                                            <segment title="Blue"/>
-                                            <segment title="Purple"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="chooseColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="utx-7C-65d"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-qX-kZr">
-                                        <rect key="frame" x="309" y="0.0" width="33" height="33"/>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-qX-kZr">
+                                        <rect key="frame" x="350" y="0.0" width="37.5" height="37.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nrK-qX-kZr" secondAttribute="height" multiplier="1:1" id="kiV-RW-tEB"/>
-                                            <constraint firstAttribute="height" constant="60" id="mK9-wu-B2b"/>
                                         </constraints>
-                                        <state key="normal" title="Trash"/>
+                                        <state key="normal" title="Trash" image="trash.png"/>
                                         <connections>
                                             <action selector="clearDrawings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oxp-On-MFR"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="Nec-fi-JJp"/>
-                                </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hob-Bj-pfg">
-                                <rect key="frame" x="20" y="36" width="627" height="243"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="hob-Bj-pfg" secondAttribute="trailing" id="2ly-Ct-Zfx"/>
+                            <constraint firstItem="t3R-Nz-n7g" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="Nxw-Ox-CjY"/>
                             <constraint firstItem="t3R-Nz-n7g" firstAttribute="top" secondItem="hob-Bj-pfg" secondAttribute="bottom" constant="20" id="Y6F-sy-o1L"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t3R-Nz-n7g" secondAttribute="bottom" constant="20" id="ZFT-BW-EwG"/>
                             <constraint firstItem="hob-Bj-pfg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="gTU-KV-cKc"/>
@@ -92,7 +122,6 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="colorSelector" destination="exM-Ra-0lH" id="hDN-Dm-7TH"/>
                         <outlet property="drawingArea" destination="hob-Bj-pfg" id="ZZ9-B4-uBm"/>
                         <outlet property="toolSelector" destination="HLg-F7-KnV" id="YDM-CT-Sdc"/>
                         <outlet property="trashButton" destination="nrK-qX-kZr" id="tqK-rd-U4P"/>
@@ -108,4 +137,16 @@
             <point key="canvasLocation" x="25.637181409295355" y="23.199999999999999"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bluecolor.png" width="512" height="512"/>
+        <image name="greencolor.png" width="512" height="512"/>
+        <image name="line.png" width="512" height="512"/>
+        <image name="oval.png" width="512" height="512"/>
+        <image name="pencil.png" width="512" height="512"/>
+        <image name="purplecolor.png" width="512" height="512"/>
+        <image name="rect.png" width="512" height="512"/>
+        <image name="redcolor.png" width="512" height="512"/>
+        <image name="trash.png" width="512" height="512"/>
+        <image name="yellowcolor.png" width="512" height="512"/>
+    </resources>
 </document>

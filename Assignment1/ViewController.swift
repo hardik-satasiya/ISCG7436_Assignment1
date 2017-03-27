@@ -27,7 +27,6 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     var isShapeEndPointWithinDrawingBounds : Bool = false
     
     // MARK: outlets
-    @IBOutlet weak var colorSelector : UISegmentedControl!
     @IBOutlet weak var trashButton : UIButton!
     @IBOutlet weak var toolSelector : UISegmentedControl!
     @IBOutlet weak var drawingArea : UIImageView!
@@ -38,7 +37,6 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        colorSelector .selectedSegmentIndex = 0
         toolSelector .selectedSegmentIndex = 0
         
         drawingArea.layer.borderColor = UIColor.black.cgColor
@@ -50,35 +48,8 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     }
     
     //MARK: UI methods
+
     
-    /***
-     *   select the colour to fill shapes with
-     */
-    @IBAction func chooseColor(_ sender: UISegmentedControl) {
-        
-        switch colorSelector.selectedSegmentIndex
-        {
-            
-        case Colors .red.rawValue:
-            selectedFillColor = Colors .red
-            
-        case Colors .yellow.rawValue:
-            selectedFillColor = Colors .yellow
-            
-        case Colors .green.rawValue:
-            selectedFillColor = Colors .green
-            
-        case Colors .blue.rawValue:
-            selectedFillColor = Colors .blue
-            
-        case Colors .purple.rawValue:
-            selectedFillColor = Colors .purple
-            
-        default:
-            selectedFillColor = Colors .red
-            
-        }
-    }
     
     /***
      *   select which tool, and thus which shape, for drawing.
@@ -113,8 +84,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     @IBAction func clearDrawings(_ sender: UIButton) {
         let alertView = UIAlertController(title : "Remove All Drawings", message : "Are you sure?", preferredStyle: .alert)
         
-        alertView.addAction( UIAlertAction( title : "No",  style : .cancel, handler : nil ))
-        alertView.addAction( UIAlertAction( title : "Yes", style : .destructive)
+        alertView.addAction( UIAlertAction( title : "Delete all", style : .destructive)
         { (action) in
             // remove all drawings
             for layer in self.view .layer.sublayers!
@@ -124,6 +94,8 @@ class ViewController: UIViewController, UIAlertViewDelegate {
                     layer.removeFromSuperlayer()
                 }
             }
+            
+            self.trashButton.isEnabled = false
         })
         
         self.present(alertView, animated: true, completion: nil)
@@ -140,7 +112,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         }
         */
         
-        trashButton.isEnabled = false
+        
     }
     
     // MARK: gesture methods
