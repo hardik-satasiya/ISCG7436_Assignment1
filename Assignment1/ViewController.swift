@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, UIAlertViewDelegate {
     
+    //MARK: constants
+    let highlightBackgroundColor = UIColor(red:0, green:122.0/255.0, blue:1, alpha:1)
+    let standardBackgroundColor = UIColor.clear
+    
     //MARK: properties
     var startLocation : CGPoint = CGPointFromString("0")
     var layer : CAShapeLayer?
@@ -31,6 +35,11 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var toolSelector : UISegmentedControl!
     @IBOutlet weak var drawingArea : UIImageView!
     
+    @IBOutlet weak var redColorButton: UIButton!
+    @IBOutlet weak var yellowColorButton: UIButton!
+    @IBOutlet weak var greenColorButton: UIButton!
+    @IBOutlet weak var blueColorButton: UIButton!
+    @IBOutlet weak var purpleColorButton: UIButton!
     
     //MARK: view methods
     override func viewDidLoad() {
@@ -38,8 +47,6 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         toolSelector .selectedSegmentIndex = 0
-        
-        drawingArea.layer.borderColor = UIColor.black.cgColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,8 +55,45 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     }
     
     //MARK: UI methods
-
     
+    func resetColorButtonStates()
+    {
+        let buttons = [redColorButton, yellowColorButton, greenColorButton, blueColorButton, purpleColorButton]
+        
+        for button in buttons
+        {
+            button?.backgroundColor = standardBackgroundColor
+        }
+    }
+
+    @IBAction func selectCurrentFillColor(_ sender: UIButton)
+    {
+        resetColorButtonStates()
+        
+        let tag = sender.tag
+        
+        switch tag {
+        case Colors .red.rawValue:
+            selectedFillColor = Colors .red
+            
+        case Colors .yellow.rawValue:
+            selectedFillColor = Colors .yellow
+            
+        case Colors .green.rawValue:
+            selectedFillColor = Colors .green
+            
+        case Colors .blue.rawValue:
+            selectedFillColor = Colors .blue
+            
+        case Colors .purple.rawValue:
+            selectedFillColor = Colors .purple
+            
+        default:
+            selectedFillColor = Colors .red
+        }
+        
+        sender.backgroundColor = highlightBackgroundColor
+    }
     
     /***
      *   select which tool, and thus which shape, for drawing.
