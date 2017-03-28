@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     //MARK: constants
     let highlightBackgroundColor = UIColor(red:0, green:122.0/255.0, blue:1, alpha:1)
     let standardBackgroundColor = UIColor.clear
+	let models = ModelManager.getInstance()
     
     //MARK: properties
     var startLocation : CGPoint = CGPointFromString("0")
@@ -146,6 +147,28 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         self.present(alertView, animated: true, completion: nil)
         
     }
+	
+	/**
+	 *  reove last known drawing made. 
+	 */
+	@IBAction func undoLastDrawing(_ sender : UIButton) {
+		if models .count() > 0 && self.view .layer.sublayers! .count > 0
+		{
+			let lastShapeIndex = models.count() - 1
+			let layer = self.view .layer.sublayers! [lastShapeIndex]
+			
+			if layer is CAShapeLayer
+			{
+				layer.removeFromSuperlayer()
+				models.removeLast()
+			}
+		}
+		
+		if models .count() > 0 || self.view .layer.sublayers! .count > 0
+		{
+			// set undo button to disabled.
+		}
+	}
     
     // MARK: gesture methods
     @IBAction func handlePanGestureDrawing(_ sender: UIPanGestureRecognizer) {
@@ -202,6 +225,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         if sender .state == .began && drawingArea.frame .contains( location )
         {
             currentShape = selectedTool.getShapeforTool(origin: location)
+			models.add(currentShape)
             layer = CAShapeLayer()
             
             // models only contain the drawing shape
@@ -212,6 +236,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
             self.view .layer.addSublayer( layer! )
             
             trashButton .isEnabled = true
+			// set undo button to enabled.
             
             // lines have no fill, so use fill as the stroke color
             switch selectedTool
