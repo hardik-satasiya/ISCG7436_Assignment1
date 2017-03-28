@@ -27,6 +27,8 @@
 		5D93CF351E8320160069B3A9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93CF341E8320160069B3A9 /* Models.swift */; };
 		5D93CF391E8321B80069B3A9 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93CF381E8321B80069B3A9 /* Tools.swift */; };
 		5D93CF3B1E8322580069B3A9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93CF3A1E8322580069B3A9 /* Colors.swift */; };
+		5DB99B621E8A34F500730C8D /* ModelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB99B611E8A34F500730C8D /* ModelsManager.swift */; };
+		5DB99B641E8A458600730C8D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB99B631E8A458600730C8D /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		5D93CF341E8320160069B3A9 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		5D93CF381E8321B80069B3A9 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		5D93CF3A1E8322580069B3A9 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		5DB99B611E8A34F500730C8D /* ModelsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsManager.swift; sourceTree = "<group>"; };
+		5DB99B631E8A458600730C8D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,9 +151,11 @@
 		5D93CF331E831FFD0069B3A9 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				5DB99B611E8A34F500730C8D /* ModelsManager.swift */,
 				5D93CF341E8320160069B3A9 /* Models.swift */,
 				5D93CF381E8321B80069B3A9 /* Tools.swift */,
 				5D93CF3A1E8322580069B3A9 /* Colors.swift */,
+				5DB99B631E8A458600730C8D /* Utils.swift */,
 			);
 			name = Backend;
 			sourceTree = "<group>";
@@ -272,7 +278,9 @@
 				02AD233B1E7769E400001275 /* Assignment1.xcdatamodeld in Sources */,
 				02AD23331E7769E400001275 /* AppDelegate.swift in Sources */,
 				5D93CF351E8320160069B3A9 /* Models.swift in Sources */,
+				5DB99B621E8A34F500730C8D /* ModelsManager.swift in Sources */,
 				5D93CF391E8321B80069B3A9 /* Tools.swift in Sources */,
+				5DB99B641E8A458600730C8D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,38 +15,48 @@ class ShapeManager
 {
 	//MARK: singleton instance
 	private
-    static let instance = ShapeManager()
+    static let instance = ShapeManager( )
 	
 	//MARK: variables
-	var shapes = [BaseShape]()
+	var shapes = [ BaseShape ] ( )
 	
 	//MARK: constructor
-	init() {
+	init( ) {
 		// should have empty list of BaseShapes.
 	}
 	
 	//MARK: singleton instance retrieval
 	public 
-	static func getInstance() -> ShapeManager
+	static func getInstance( ) -> ShapeManager
 	{
 		return instance
 	}
 	
 	//MARK: methods
-	func append( shape : BaseShape)
+	func append( shape : BaseShape )
 	{
-		self.shapes.append(shape)
+		self .shapes .append( shape )
 	}
 	
 	func removeLast( ) -> BaseShape
 	{
-		var shape = self.shapes.remove()
+		let shape = self .shapes .removeLast( )
 		return shape
 	}
 	
-	func count() -> Int
+	func count( ) -> Int
 	{
-		return self.shapes.count
+		return self .shapes .count
 	}
+    
+    func getShape( at index : Int) -> BaseShape
+    {
+        return self .shapes[ index ]
+    }
+    
+    func removeAll( )
+    {
+        self .shapes .removeAll( )
+    }
 }
 

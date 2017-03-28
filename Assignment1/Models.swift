@@ -14,6 +14,11 @@ import UIKit
  */
 class BaseShape
 {
+    func getOrigin() -> CGPoint
+    {
+        preconditionFailure("Must override in subclass.")
+    }
+    
     func getShapePath() -> UIBezierPath
     {
         preconditionFailure("Must override in subclass.")
@@ -30,6 +35,10 @@ class LineShape : BaseShape {
     init(initial point: CGPoint)
     {
         self.linePath.append(point)
+    }
+    
+    override func getOrigin() -> CGPoint {
+        return self.linePath[0]
     }
     
     public final
@@ -83,6 +92,10 @@ class RectangleShape : BaseShape {
         self.y = point.y
     }
     
+    override func getOrigin() -> CGPoint {
+        return CGPoint(x : self.x, y : self.y)
+    }
+    
     func setSize( size: CGSize) {
         self.width = size.width
         self.height = size.height
@@ -98,7 +111,6 @@ class RectangleShape : BaseShape {
     func getRectPath() -> CGRect
     {
         let rect = CGRect(x: self.x, y: self.y, width: self.width, height: self.height)
-        print("\(rect)")
         return rect
     }
     
