@@ -91,12 +91,15 @@ class RectangleShape : BaseShape {
     func setSize( width: CGFloat, height: CGFloat) {
         self.width = width
         self.height = height
+        
     }
     
     // convenience method, as subclasses use the same rect shape for drawing
     func getRectPath() -> CGRect
     {
-        return CGRect(x: self.x, y: self.y, width: self.width, height: self.height)
+        let rect = CGRect(x: self.x, y: self.y, width: self.width, height: self.height)
+        print("\(rect)")
+        return rect
     }
     
     override func getShapePath() -> UIBezierPath {

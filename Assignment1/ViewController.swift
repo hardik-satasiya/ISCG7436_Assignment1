@@ -128,6 +128,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     @IBAction func clearDrawings(_ sender: UIButton) {
         let alertView = UIAlertController(title : "Remove All Drawings", message : "Are you sure?", preferredStyle: .alert)
         
+        alertView.addAction( UIAlertAction( title : "Cancel", style : .cancel, handler: nil))
         alertView.addAction( UIAlertAction( title : "Delete all", style : .destructive)
         { (action) in
             // remove all drawings
@@ -246,6 +247,10 @@ class ViewController: UIViewController, UIAlertViewDelegate {
             // adjust values to within the drawing boundaries
             let correctedLocation : CGPoint = correctLocationToWithinDrawbounds(currentLocation : location, boundaries : drawingArea .frame)
             let correctedTranslation : CGPoint = correctTranslationToWithinDrawbounds( origin : startLocation, currentTranslation: translation, boundaries: drawingArea .frame)
+            
+            print("translation=\(correctedTranslation)")
+            
+            //TODO: show wha the corrections are.
             
             // draw the shape for the selected tool
             switch selectedTool
