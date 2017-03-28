@@ -23,7 +23,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     var currentPoint : CGPoint?
     
     // if drawing with pencil, need to remember the path over time.
-    var currentPath : UIBezierPath?
+    var currentShape: BaseShape?
     
     var selectedFillColor : Colors = Colors .red
     var selectedTool : Tools = Tools .pencil
@@ -144,19 +144,6 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         
         self.present(alertView, animated: true, completion: nil)
         
-        /*
-        for layer in self.view .layer.sublayers!
-        {
-            
-            if layer is CAShapeLayer
-                
-            {
-                layer.removeFromSuperlayer()
-            }
-        }
-        */
-        
-        
     }
     
     // MARK: gesture methods
@@ -213,10 +200,10 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         // only start drawing shapes if beginning inside the drawing area.
         if sender .state == .began && drawingArea.frame .contains( location )
         {
-            
-            startLocation = location
+            currentShape = selectedTool.getShapeforTool(origin: location)
             layer = CAShapeLayer()
             
+            // models only contain the drawing shape
             layer? .fillColor = selectedFillColor.getColor()
             layer? .opacity = 0.5
             layer? .strokeColor = UIColor.black .cgColor
@@ -225,15 +212,13 @@ class ViewController: UIViewController, UIAlertViewDelegate {
             
             trashButton .isEnabled = true
             
+            // lines have no fill, so use fill as the stroke color
             switch selectedTool
             {
             case Tools .pencil:
-                currentPath = UIBezierPath( )
-                currentPath!.move(to: startLocation)
                 layer? .strokeColor = selectedFillColor .getColor()
 
                 
-            // otherwise line will always be black
             case Tools .line:
                 layer? .strokeColor = selectedFillColor .getColor()
                 
@@ -258,6 +243,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         else if sender .state == .changed && isShapeEndPointWithinDrawingBounds
         {
             let translation = sender.translation(in: sender.view)
+            // adjust values to within the drawing boundaries
             let correctedLocation : CGPoint = correctLocationToWithinDrawbounds(currentLocation : location, boundaries : drawingArea .frame)
             let correctedTranslation : CGPoint = correctTranslationToWithinDrawbounds( origin : startLocation, currentTranslation: translation, boundaries: drawingArea .frame)
             
@@ -266,27 +252,22 @@ class ViewController: UIViewController, UIAlertViewDelegate {
             {
                 
             case Tools .oval:
-                currentPath = (UIBezierPath( ovalIn:
-                    CGRect( x : startLocation .x, y : startLocation .y,
-                            width : correctedTranslation .x, height : correctedTranslation .y )))
+                let newSize = CGSize(width: correctedTranslation.x, height: correctedTranslation.y)
+                (currentShape as! OvalShape).setSize(size: newSize)
                 
             case Tools .rectangle:
-                currentPath = (UIBezierPath( rect:
-                    CGRect( x : startLocation .x, y : startLocation .y,
-                            width : correctedTranslation .x, height : correctedTranslation .y )))
+                let newSize = CGSize(width: correctedTranslation.x, height: correctedTranslation.y)
+                (currentShape as! RectangleShape).setSize(size: newSize)
                 
             case Tools .pencil:
-                currentPath!.addLine(to: correctedLocation)
-                currentPath!.move(to: correctedLocation)
+                (currentShape as! FreeformLineShape).addPoint(next: correctedLocation)
                 
             case Tools .line:
-                currentPath = UIBezierPath( )
-                currentPath!.move(to: startLocation)
-                currentPath!.addLine(to: correctedLocation)
+                (currentShape as! LineShape).setEndPoint(next: correctedLocation)
             }
             
             
-            layer? .path = currentPath?.cgPath
+            layer? .path = currentShape?.getShapePath().cgPath
         }
     }
 }
