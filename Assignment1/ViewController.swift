@@ -171,7 +171,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     @IBAction func saveToPhotoAlbum(_ sender: UIButton) {
         let imageName = "MyDrawing " + Date().description(with : Locale.current)
         let name = imageName.replacingOccurrences(of: ":", with: "-")
-        ImageUtilities .saveViewLayerToPngFile( fileName: name, view: self .view, bounds: drawArea .frame, opaque: true )
+        ImageUtilities .saveViewLayerToPngFile( fileName: name, view: self .view, bounds: self .view .frame, opaque: true )
     }
     
 	
