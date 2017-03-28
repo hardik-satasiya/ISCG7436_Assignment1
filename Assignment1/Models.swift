@@ -72,25 +72,40 @@ class FreeformLineShape : LineShape {
 }
 
 class RectangleShape : BaseShape {
-    var origin = CGPoint()
-    var size = CGSize()
+    var x : CGFloat = 0
+    var y : CGFloat = 0
+    var width: CGFloat = 0
+    var height : CGFloat = 0
     
     init(initial point: CGPoint)
     {
-        self.origin = point
+        self.x = point.x
+        self.y = point.y
     }
     
     func setSize( size: CGSize) {
-        self.size = size
+        self.width = size.width
+        self.height = size.height
+    }
+    
+    func setSize( width: CGFloat, height: CGFloat) {
+        self.width = width
+        self.height = height
+    }
+    
+    // convenience method, as subclasses use the same rect shape for drawing
+    func getRectPath() -> CGRect
+    {
+        return CGRect(x: self.x, y: self.y, width: self.width, height: self.height)
     }
     
     override func getShapePath() -> UIBezierPath {
-        return UIBezierPath( rect: CGRect( origin: self.origin, size: self.size))
+        return UIBezierPath( rect: self.getRectPath())
     }
 }
 
 class OvalShape : RectangleShape {
     override func getShapePath() -> UIBezierPath {
-        return UIBezierPath( ovalIn: CGRect( origin: self.origin, size: self.size))
+        return UIBezierPath( ovalIn: self.getRectPath())
     }
 }

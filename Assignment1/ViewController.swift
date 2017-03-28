@@ -252,12 +252,10 @@ class ViewController: UIViewController, UIAlertViewDelegate {
             {
                 
             case Tools .oval:
-                let newSize = CGSize(width: correctedTranslation.x, height: correctedTranslation.y)
-                (currentShape as! OvalShape).setSize(size: newSize)
+                (currentShape as! OvalShape).setSize(width: correctedTranslation.x, height: correctedTranslation.y)
                 
             case Tools .rectangle:
-                let newSize = CGSize(width: correctedTranslation.x, height: correctedTranslation.y)
-                (currentShape as! RectangleShape).setSize(size: newSize)
+                (currentShape as! RectangleShape).setSize(width: correctedTranslation.x, height: correctedTranslation.y)
                 
             case Tools .pencil:
                 (currentShape as! FreeformLineShape).addPoint(next: correctedLocation)
@@ -265,7 +263,6 @@ class ViewController: UIViewController, UIAlertViewDelegate {
             case Tools .line:
                 (currentShape as! LineShape).setEndPoint(next: correctedLocation)
             }
-            
             
             layer? .path = currentShape?.getShapePath().cgPath
         }
