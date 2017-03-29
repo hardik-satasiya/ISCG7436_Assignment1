@@ -59,6 +59,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         
         self.trashButton .isEnabled = false
         self.undoButton .isEnabled  = false
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -177,10 +178,16 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         
     }
     
+    /***
+     *   save the current images as a photo, using current datetime.
+     */
     @IBAction func saveToPhotoAlbum(_ sender: UIButton) {
-        let imageName = "MyDrawing " + Date().description(with : Locale.current)
-        let name = imageName.replacingOccurrences(of: ":", with: "-")
-        ImageUtilities .saveViewLayerToPngFile( fileName: name, view: self .view, bounds: self .view .frame, opaque: true )
+        let dateFormatter = DateFormatter()
+        dateFormatter .dateStyle = .short
+        dateFormatter .timeStyle = .medium
+        // change times from HH:mm:ss to HH-mm-ss to prevent conflicts with special OS characters
+        let imageName = "MyDrawing " + dateFormatter .string(from: Date()) .replacingOccurrences(of: "/", with: "-")
+        ImageUtilities .saveViewLayerToPngFile( fileName: imageName, view: self .view, bounds: self .view .frame, opaque: true )
     }
     
 	
