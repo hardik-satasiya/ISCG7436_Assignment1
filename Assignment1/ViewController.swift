@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController, UIAlertViewDelegate {
     
     //MARK: constants
-    let highlightBackgroundColor = UIColor(red:0, green:122.0/255.0, blue:1, alpha:1)
+    
+    // not sure how to grab the current tint from the segmented control.
     let standardBackgroundColor = UIColor.clear
 	let models = ShapeManager.getInstance()
     
@@ -68,6 +69,14 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     //MARK: UI methods
     
     /***
+     *   Use Tool Selector tint for highlighting other controls.
+     */
+    func getToolSelectorTint() -> UIColor
+    {
+        return toolSelector.tintColor
+    }
+    
+    /***
      *   remove all highlighting from the colour buttons
      */
     func resetColorButtonStates()
@@ -109,7 +118,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
             selectedFillColor = Colors .blue
         }
         
-        sender.backgroundColor = highlightBackgroundColor
+        sender.backgroundColor = getToolSelectorTint()
     }
     
     /***

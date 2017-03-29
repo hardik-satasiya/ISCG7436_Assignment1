@@ -71,8 +71,8 @@ class ImageUtilities {
         
         do {
             let documentsURL = try FileManager .default .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            print("DocumentsUrl=\(documentsURL)")
             let fileURL = documentsURL .appendingPathComponent( fileName + ".png" )
+            print("fileURL=\(fileURL)")
             
             try data! .write ( to: fileURL, options: .atomicWrite )
         } catch {
