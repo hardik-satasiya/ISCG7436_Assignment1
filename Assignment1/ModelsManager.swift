@@ -5,11 +5,19 @@
 //  Created by Roland Askew on 3/28/17.
 //  Copyright © 2017 Unitec. All rights reserved.
 //
+//  managers to keep track of active models.
+//
 
 import Foundation
 
 /***
  *   Manager class for Shape classes.
+ *
+ *   Singleton Pattern
+ *
+ *   Stores sequence of shapes. Ordered by time created.
+ *   Acts as proxy to the storage sequence.
+ *   Means models are always available from one and only one source, and always kept track of.
  */
 class ShapeManager
 {

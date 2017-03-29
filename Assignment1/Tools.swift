@@ -5,6 +5,9 @@
 //  Created by Roland Askew on 3/23/17.
 //  Copyright © 2017 Unitec. All rights reserved.
 //
+//  enum for tool selection, and retrieving the Model linked to the tool.
+//
+//
 
 import Foundation
 import UIKit

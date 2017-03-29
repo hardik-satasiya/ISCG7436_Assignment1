@@ -187,7 +187,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         dateFormatter .timeStyle = .medium
         // change times from HH:mm:ss to HH-mm-ss to prevent conflicts with special OS characters
         let imageName = "MyDrawing " + dateFormatter .string(from: Date()) .replacingOccurrences(of: "/", with: "-")
-        ImageUtilities .saveViewLayerToPngFile( fileName: imageName, view: self .view, bounds: self .view .frame, opaque: true )
+        ImageUtilities .saveViewLayerToPngFileInDocumentsFolder( fileName: imageName, view: self .view, bounds: self .view .frame, opaque: true )
     }
     
 	

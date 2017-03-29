@@ -5,6 +5,9 @@
 //  Created by Roland Askew on 3/23/17.
 //  Copyright © 2017 Unitec. All rights reserved.
 //
+//  Models specific to the project.
+//
+//
 
 import Foundation
 import UIKit
@@ -14,11 +17,14 @@ import UIKit
  */
 class BaseShape
 {
+    // the first point in the path
+    // different for open shapes (lines), and closed shapes
     func getOrigin() -> CGPoint
     {
         preconditionFailure("Must override in subclass.")
     }
     
+    // how to draw the shape.
     func getShapePath() -> UIBezierPath
     {
         preconditionFailure("Must override in subclass.")
@@ -41,6 +47,7 @@ class LineShape : BaseShape {
         return self.linePath[0]
     }
     
+    // specific only to single straight lines
     public final
     func setEndPoint( next point: CGPoint)
     {
@@ -74,12 +81,16 @@ class LineShape : BaseShape {
  */
 class FreeformLineShape : LineShape {
     
+    // specific only to freeform lines
     public final
     func addPoint(next point: CGPoint) {
         self.linePath.append(point)
     }
 }
 
+/***
+ *   Represent a rectangle or square
+ */
 class RectangleShape : BaseShape {
     var x : CGFloat = 0
     var y : CGFloat = 0
@@ -96,11 +107,13 @@ class RectangleShape : BaseShape {
         return CGPoint(x : self.x, y : self.y)
     }
     
+    // will always treat origin as top left corner.
     func setSize( size: CGSize) {
         self.width = size.width
         self.height = size.height
     }
     
+    // more useful when working with transitions.
     func setSize( width: CGFloat, height: CGFloat) {
         self.width = width
         self.height = height
@@ -119,6 +132,9 @@ class RectangleShape : BaseShape {
     }
 }
 
+/***
+ *   Represent an Oval (use rectangle to draw within).
+ */
 class OvalShape : RectangleShape {
     override func getShapePath() -> UIBezierPath {
         return UIBezierPath( ovalIn: self.getRectPath())

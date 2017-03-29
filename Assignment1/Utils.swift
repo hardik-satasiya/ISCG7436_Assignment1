@@ -5,12 +5,16 @@
 //  Created by Roland Askew on 3/28/17.
 //  Copyright © 2017 Unitec. All rights reserved.
 //
+//  Utility classes holding very common actions.
+//
+//
 
 import Foundation
 import UIKit
 
 class DrawingUtilities {
 
+    // move a location to within a drawing boundary.
     static func correctLocationToWithinDrawbounds( currentLocation: CGPoint, boundaries: CGRect) -> CGPoint {
         var correctedLocation : CGPoint?
         correctedLocation = currentLocation
@@ -60,7 +64,8 @@ class DrawingUtilities {
 
 class ImageUtilities {
     
-    static func saveViewLayerToPngFile( fileName : String, view : UIView, bounds : CGRect, opaque : Bool )
+    // convert picture data to a PNG file and save in the documents folder.
+    static func saveViewLayerToPngFileInDocumentsFolder( fileName : String, view : UIView, bounds : CGRect, opaque : Bool )
     {
         UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, 0.0)
         view.drawHierarchy(in: bounds, afterScreenUpdates: true)
@@ -70,6 +75,7 @@ class ImageUtilities {
         let data = UIImagePNGRepresentation(image!)
         
         do {
+            // saving to documents - proper photo album save requires permissions setup and using PH classes, investigated but found too complex for remaining time and issues accessing PH classes (required import not available?)
             let documentsURL = try FileManager .default .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             let fileURL = documentsURL .appendingPathComponent( fileName + ".png" )
             print("fileURL=\(fileURL)")
