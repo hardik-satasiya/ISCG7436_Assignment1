@@ -55,6 +55,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="lTh-wB-TzT" secondAttribute="height" multiplier="1:1" constant="1" id="prj-r7-FL8"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Button" image="redcolor.png"/>
                                                 <connections>
                                                     <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p1s-l3-iqm"/>
@@ -65,6 +66,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="SIc-HT-tOE" secondAttribute="height" multiplier="1:1" id="4Hg-P7-pbi"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Button" image="yellowcolor.png"/>
                                                 <connections>
                                                     <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1FA-1f-cPA"/>
@@ -75,6 +77,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Wxq-qP-NTl" secondAttribute="height" multiplier="1:1" constant="1" id="v4s-3o-AzE"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Button" image="greencolor.png"/>
                                                 <connections>
                                                     <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xp8-IW-O9K"/>
@@ -85,6 +88,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="WgG-Z2-CJL" secondAttribute="height" multiplier="1:1" id="5B4-Y2-FAJ"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Button" image="bluecolor.png"/>
                                                 <connections>
                                                     <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nnM-vR-dtk"/>
@@ -95,6 +99,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="w2i-cy-j7O" secondAttribute="height" multiplier="1:1" constant="1" id="lOJ-Y1-gaZ"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Button" image="purplecolor.png"/>
                                                 <connections>
                                                     <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uz3-wp-OUV"/>
@@ -115,6 +120,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nrK-qX-kZr" secondAttribute="height" multiplier="1:1" id="kiV-RW-tEB"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Trash" image="trash.png"/>
                                         <connections>
                                             <action selector="clearDrawings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oxp-On-MFR"/>
@@ -125,6 +131,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="KHe-aq-RLw" secondAttribute="height" multiplier="1:1" constant="1" id="2d6-IS-cjR"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Undo" image="Undo.png"/>
                                         <connections>
                                             <action selector="undoLastDrawing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rdk-Dr-czg"/>
@@ -135,6 +142,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2yB-jl-NHQ" secondAttribute="height" multiplier="1:1" id="aAw-eb-Hhi"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Save" image="Save.png"/>
                                         <connections>
                                             <action selector="saveToPhotoAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eEr-gO-Kp7"/>
