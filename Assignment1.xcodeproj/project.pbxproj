@@ -28,6 +28,8 @@
 		5D93CF3B1E8322580069B3A9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93CF3A1E8322580069B3A9 /* Colors.swift */; };
 		5DB99B621E8A34F500730C8D /* ModelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB99B611E8A34F500730C8D /* ModelsManager.swift */; };
 		5DB99B641E8A458600730C8D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB99B631E8A458600730C8D /* Utils.swift */; };
+		5DD6DDA71E8C4A1100422DF4 /* Save.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DD6DDA51E8C4A1100422DF4 /* Save.png */; };
+		5DD6DDA81E8C4A1100422DF4 /* Undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DD6DDA61E8C4A1100422DF4 /* Undo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		5D93CF3A1E8322580069B3A9 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5DB99B611E8A34F500730C8D /* ModelsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsManager.swift; sourceTree = "<group>"; };
 		5DB99B631E8A458600730C8D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5DD6DDA51E8C4A1100422DF4 /* Save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Save.png; path = images/Save.png; sourceTree = SOURCE_ROOT; };
+		5DD6DDA61E8C4A1100422DF4 /* Undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undo.png; path = images/Undo.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 		5D12E3761E89AAAC00EA9645 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5DD6DDA51E8C4A1100422DF4 /* Save.png */,
+				5DD6DDA61E8C4A1100422DF4 /* Undo.png */,
 				5D12E3771E89AABB00EA9645 /* bluecolor.png */,
 				5D12E3781E89AABB00EA9645 /* greencolor.png */,
 				5D12E3791E89AABB00EA9645 /* line.png */,
@@ -232,6 +238,7 @@
 			files = (
 				5D12E3851E89AABB00EA9645 /* pencil.png in Resources */,
 				5D12E3871E89AABB00EA9645 /* rect.png in Resources */,
+				5DD6DDA71E8C4A1100422DF4 /* Save.png in Resources */,
 				5D12E3891E89AABB00EA9645 /* trash.png in Resources */,
 				5D12E3841E89AABB00EA9645 /* oval.png in Resources */,
 				02AD23401E7769E400001275 /* LaunchScreen.storyboard in Resources */,
@@ -241,6 +248,7 @@
 				5D12E3811E89AABB00EA9645 /* bluecolor.png in Resources */,
 				5D12E3831E89AABB00EA9645 /* line.png in Resources */,
 				5D12E3881E89AABB00EA9645 /* redcolor.png in Resources */,
+				5DD6DDA81E8C4A1100422DF4 /* Undo.png in Resources */,
 				5D12E38A1E89AABB00EA9645 /* yellowcolor.png in Resources */,
 				5D12E3861E89AABB00EA9645 /* purplecolor.png in Resources */,
 			);
