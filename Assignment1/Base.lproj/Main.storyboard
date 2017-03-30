@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,81 +24,158 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hob-Bj-pfg">
-                                <rect key="frame" x="20" y="36" width="627" height="270"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8E7-vs-qM8">
+                                <rect key="frame" x="20" y="40" width="528" height="164"/>
+                                <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="0.15121588908450703" colorSpace="calibratedRGB"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="t3R-Nz-n7g">
-                                <rect key="frame" x="20" y="247" width="540" height="53"/>
+                                <rect key="frame" x="20" y="224" width="408" height="32"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-F7-KnV">
-                                        <rect key="frame" x="0.0" y="0.0" width="211" height="54"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-F7-KnV">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="HLg-F7-KnV" secondAttribute="height" multiplier="4:1" id="FRA-TF-cnI"/>
+                                            <constraint firstAttribute="width" secondItem="HLg-F7-KnV" secondAttribute="height" multiplier="4:1" id="Wkg-DJ-jLA"/>
                                         </constraints>
                                         <segments>
-                                            <segment title="Pencil"/>
-                                            <segment title="Rect"/>
-                                            <segment title="Oval"/>
-                                            <segment title="Line"/>
+                                            <segment title="" image="pencil.png"/>
+                                            <segment title="" image="rect.png"/>
+                                            <segment title="" image="oval.png"/>
+                                            <segment title="" image="line.png"/>
                                         </segments>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="chooseTool:" destination="BYZ-38-t0r" eventType="valueChanged" id="KZU-TB-dJU"/>
                                         </connections>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="exM-Ra-0lH">
-                                        <rect key="frame" x="217" y="0.0" width="264" height="54"/>
+
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-HE-zgr">
+                                        <rect key="frame" x="134" y="0.0" width="160" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTh-wB-TzT">
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="lTh-wB-TzT" secondAttribute="height" multiplier="1:1" id="h6d-iD-QNr"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Button" image="redcolor.png"/>
+                                                <connections>
+                                                    <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p1s-l3-iqm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIc-HT-tOE">
+                                                <rect key="frame" x="32" y="0.0" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="SIc-HT-tOE" secondAttribute="height" multiplier="1:1" id="4Hg-P7-pbi"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Button" image="yellowcolor.png"/>
+                                                <connections>
+                                                    <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1FA-1f-cPA"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxq-qP-NTl">
+                                                <rect key="frame" x="64" y="0.0" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Wxq-qP-NTl" secondAttribute="height" multiplier="1:1" id="yBb-QU-Fhc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Button" image="greencolor.png"/>
+                                                <connections>
+                                                    <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xp8-IW-O9K"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgG-Z2-CJL">
+                                                <rect key="frame" x="96" y="0.0" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="WgG-Z2-CJL" secondAttribute="height" multiplier="1:1" id="5B4-Y2-FAJ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Button" image="bluecolor.png"/>
+                                                <connections>
+                                                    <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nnM-vR-dtk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2i-cy-j7O">
+                                                <rect key="frame" x="128" y="0.0" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="w2i-cy-j7O" secondAttribute="height" multiplier="1:1" id="8TS-3X-bsA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Button" image="purplecolor.png"/>
+                                                <connections>
+                                                    <action selector="selectCurrentFillColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uz3-wp-OUV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-qX-kZr">
+                                        <rect key="frame" x="300" y="0.0" width="32" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="exM-Ra-0lH" secondAttribute="height" multiplier="5:1" id="nyr-Rh-Qce"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="Red"/>
-                                            <segment title="Yellow"/>
-                                            <segment title="Green"/>
-                                            <segment title="Blue"/>
-                                            <segment title="Purple"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="chooseColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="utx-7C-65d"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-qX-kZr">
-                                        <rect key="frame" x="487" y="0.0" width="53" height="53"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="EHy-vV-rzl"/>
                                             <constraint firstAttribute="width" secondItem="nrK-qX-kZr" secondAttribute="height" multiplier="1:1" id="kiV-RW-tEB"/>
                                         </constraints>
-                                        <state key="normal" title="Trash"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Trash" image="trash.png"/>
                                         <connections>
                                             <action selector="clearDrawings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oxp-On-MFR"/>
                                         </connections>
+
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHe-aq-RLw">
+                                        <rect key="frame" x="338" y="0.0" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="KHe-aq-RLw" secondAttribute="height" multiplier="1:1" id="58u-37-c68"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Undo" image="Undo.png"/>
+                                        <connections>
+                                            <action selector="undoLastDrawing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rdk-Dr-czg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yB-jl-NHQ">
+                                        <rect key="frame" x="376" y="0.0" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="2yB-jl-NHQ" secondAttribute="height" multiplier="1:1" id="aAw-eb-Hhi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Save" image="Save.png"/>
+                                        <connections>
+                                            <action selector="saveToPhotoAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eEr-gO-Kp7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="exM-Ra-0lH" firstAttribute="height" secondItem="HLg-F7-KnV" secondAttribute="height" id="GfI-oH-VvQ"/>
-                                    <constraint firstItem="nrK-qX-kZr" firstAttribute="height" secondItem="HLg-F7-KnV" secondAttribute="height" id="Zpo-fp-kaT"/>
-                                </constraints>
+
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="hob-Bj-pfg" secondAttribute="trailing" id="2ly-Ct-Zfx"/>
-                            <constraint firstItem="t3R-Nz-n7g" firstAttribute="top" secondItem="hob-Bj-pfg" secondAttribute="bottom" constant="20" id="Y6F-sy-o1L"/>
+                            <constraint firstItem="t3R-Nz-n7g" firstAttribute="top" secondItem="8E7-vs-qM8" secondAttribute="bottom" constant="20" id="IQY-NG-7ya"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8E7-vs-qM8" secondAttribute="trailing" id="MdC-6S-LjQ"/>
+                            <constraint firstItem="t3R-Nz-n7g" firstAttribute="width" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="width" id="NNJ-9N-rfn"/>
+                            <constraint firstItem="t3R-Nz-n7g" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="Nxw-Ox-CjY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t3R-Nz-n7g" secondAttribute="bottom" constant="20" id="ZFT-BW-EwG"/>
-                            <constraint firstItem="hob-Bj-pfg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="gTU-KV-cKc"/>
-                            <constraint firstItem="hob-Bj-pfg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rb2-OQ-Zr9"/>
-                            <constraint firstAttribute="trailing" secondItem="t3R-Nz-n7g" secondAttribute="trailing" constant="8" id="wfS-xc-Fip"/>
+
+                            <constraint firstItem="8E7-vs-qM8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="qO0-Ph-IUX"/>
+                            <constraint firstItem="8E7-vs-qM8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tKi-h6-AyG"/>
+
                             <constraint firstItem="t3R-Nz-n7g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yJJ-bV-kEp"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="8SD-5s-fOb" appends="YES" id="iQW-Ic-w3R"/>
                         </connections>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="colorSelector" destination="exM-Ra-0lH" id="hDN-Dm-7TH"/>
-                        <outlet property="drawingArea" destination="hob-Bj-pfg" id="ZZ9-B4-uBm"/>
+                        <outlet property="blueColorButton" destination="WgG-Z2-CJL" id="umV-Cd-Naf"/>
+                        <outlet property="drawArea" destination="8E7-vs-qM8" id="Lck-PV-HQA"/>
+                        <outlet property="greenColorButton" destination="Wxq-qP-NTl" id="bpd-1C-Jb4"/>
+                        <outlet property="purpleColorButton" destination="w2i-cy-j7O" id="EEf-lv-3f5"/>
+                        <outlet property="redColorButton" destination="lTh-wB-TzT" id="HJj-yE-q5m"/>
                         <outlet property="toolSelector" destination="HLg-F7-KnV" id="YDM-CT-Sdc"/>
                         <outlet property="trashButton" destination="nrK-qX-kZr" id="tqK-rd-U4P"/>
+                        <outlet property="undoButton" destination="KHe-aq-RLw" id="6a2-y5-8Bz"/>
+                        <outlet property="yellowColorButton" destination="SIc-HT-tOE" id="6Ej-PQ-iBu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -107,7 +185,21 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="25.637181409295355" y="23.199999999999999"/>
+            <point key="canvasLocation" x="25" y="22.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Save.png" width="512" height="512"/>
+        <image name="Undo.png" width="512" height="512"/>
+        <image name="bluecolor.png" width="512" height="512"/>
+        <image name="greencolor.png" width="512" height="512"/>
+        <image name="line.png" width="209" height="210"/>
+        <image name="oval.png" width="256" height="256"/>
+        <image name="pencil.png" width="256" height="256"/>
+        <image name="purplecolor.png" width="512" height="512"/>
+        <image name="rect.png" width="256" height="256"/>
+        <image name="redcolor.png" width="512" height="512"/>
+        <image name="trash.png" width="256" height="256"/>
+        <image name="yellowcolor.png" width="512" height="512"/>
+    </resources>
 </document>
