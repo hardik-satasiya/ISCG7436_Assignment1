@@ -152,9 +152,8 @@ class ViewController: UIViewController, UIAlertViewDelegate {
      *  should result in blank drawing.
      */
     @IBAction func clearDrawings(_ sender: UIButton) {
-        let alertView = UIAlertController(title : "Remove All Drawings", message : "Are you sure?", preferredStyle: .alert)
+        let alertView = UIAlertController(title : "Remove All Drawings", message : "Are you sure?", preferredStyle: .actionSheet)
         
-        alertView.addAction( UIAlertAction( title : "Cancel", style : .cancel, handler: nil))
         alertView.addAction( UIAlertAction( title : "Delete all", style : .destructive)
         { (action) in
             

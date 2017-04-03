@@ -29,30 +29,29 @@
                                 <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="0.15121588908450703" colorSpace="calibratedRGB"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="t3R-Nz-n7g">
-                                <rect key="frame" x="20" y="224" width="408" height="32"/>
+                                <rect key="frame" x="20" y="224" width="402" height="32"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-F7-KnV">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="HLg-F7-KnV" secondAttribute="height" multiplier="4:1" id="Wkg-DJ-jLA"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="" image="pencil.png"/>
-                                            <segment title="" image="rect.png"/>
-                                            <segment title="" image="oval.png"/>
-                                            <segment title="" image="line.png"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="chooseTool:" destination="BYZ-38-t0r" eventType="valueChanged" id="KZU-TB-dJU"/>
-                                        </connections>
-                                    </segmentedControl>
-
                                     <stackView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-HE-zgr">
-                                        <rect key="frame" x="134" y="0.0" width="160" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="32"/>
                                         <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-F7-KnV">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="HLg-F7-KnV" secondAttribute="height" multiplier="4:1" id="Wkg-DJ-jLA"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="" image="pencil.png"/>
+                                                    <segment title="" image="rect.png"/>
+                                                    <segment title="" image="oval.png"/>
+                                                    <segment title="" image="line.png"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="chooseTool:" destination="BYZ-38-t0r" eventType="valueChanged" id="KZU-TB-dJU"/>
+                                                </connections>
+                                            </segmentedControl>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTh-wB-TzT">
-                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="128" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="lTh-wB-TzT" secondAttribute="height" multiplier="1:1" id="h6d-iD-QNr"/>
                                                 </constraints>
@@ -63,7 +62,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIc-HT-tOE">
-                                                <rect key="frame" x="32" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="160" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="SIc-HT-tOE" secondAttribute="height" multiplier="1:1" id="4Hg-P7-pbi"/>
                                                 </constraints>
@@ -74,7 +73,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxq-qP-NTl">
-                                                <rect key="frame" x="64" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="192" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Wxq-qP-NTl" secondAttribute="height" multiplier="1:1" id="yBb-QU-Fhc"/>
                                                 </constraints>
@@ -85,7 +84,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgG-Z2-CJL">
-                                                <rect key="frame" x="96" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="224" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="WgG-Z2-CJL" secondAttribute="height" multiplier="1:1" id="5B4-Y2-FAJ"/>
                                                 </constraints>
@@ -96,7 +95,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2i-cy-j7O">
-                                                <rect key="frame" x="128" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="256" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="w2i-cy-j7O" secondAttribute="height" multiplier="1:1" id="8TS-3X-bsA"/>
                                                 </constraints>
@@ -109,7 +108,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-qX-kZr">
-                                        <rect key="frame" x="300" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="294" y="0.0" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nrK-qX-kZr" secondAttribute="height" multiplier="1:1" id="kiV-RW-tEB"/>
                                         </constraints>
@@ -118,10 +117,9 @@
                                         <connections>
                                             <action selector="clearDrawings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oxp-On-MFR"/>
                                         </connections>
-
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHe-aq-RLw">
-                                        <rect key="frame" x="338" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="332" y="0.0" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="KHe-aq-RLw" secondAttribute="height" multiplier="1:1" id="58u-37-c68"/>
                                         </constraints>
@@ -132,7 +130,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yB-jl-NHQ">
-                                        <rect key="frame" x="376" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="370" y="0.0" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2yB-jl-NHQ" secondAttribute="height" multiplier="1:1" id="aAw-eb-Hhi"/>
                                         </constraints>
@@ -143,7 +141,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -154,10 +151,8 @@
                             <constraint firstItem="t3R-Nz-n7g" firstAttribute="width" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="width" id="NNJ-9N-rfn"/>
                             <constraint firstItem="t3R-Nz-n7g" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="Nxw-Ox-CjY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t3R-Nz-n7g" secondAttribute="bottom" constant="20" id="ZFT-BW-EwG"/>
-
                             <constraint firstItem="8E7-vs-qM8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="qO0-Ph-IUX"/>
                             <constraint firstItem="8E7-vs-qM8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tKi-h6-AyG"/>
-
                             <constraint firstItem="t3R-Nz-n7g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yJJ-bV-kEp"/>
                         </constraints>
                         <connections>
@@ -185,7 +180,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="25" y="22.5"/>
+            <point key="canvasLocation" x="33.802816901408448" y="93.75"/>
         </scene>
     </scenes>
     <resources>
