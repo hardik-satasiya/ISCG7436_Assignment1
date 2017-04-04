@@ -1,16 +1,6 @@
-# ISCG7436_Assignment1
-Assignment 1 for ISCG7436 iOS Development
-
-## Purpose
-
-- Draw with finger (tap and drag) on device screen.
-- Draw freeform lines, straight lines, circles, Squares / Rectangles.
-- Select one of a few colours, and one tool to use at a time.
-- Select to clear the drawing screen. when clearing, a popup dialog allows user to confirm clearing.
-
 ## Design Patterns
 
-Model View Controller was used.
+MVC was used.
 
 - Shape classes for models. Enums for tools and colours. Shapes could generate a UIBezierPath if requested.
 - ShapeManager singleton for maintaining a list of shapes created.
@@ -36,10 +26,15 @@ Model View Controller was used.
 
 None were used.
 
-## What could be better
+## Improvements
 
 - Drawing area should show a border so user knows where to draw.
 - Clear Screen dialog could be proper popup dialog, and disappear if user tapped outside it.
 - Save images to photo album, which requires requesting permissions.
 
+## Background
 
+- 30 hours.
+- Past study at Auckland Uni, Software Engineering, dropped out mid-2016.
+- Self teaching android.
+- Studying iOS, Databases, Java Enterprise. 
