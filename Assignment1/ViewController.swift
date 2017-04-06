@@ -18,13 +18,10 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     
     var drawnShapeLayers = [CAShapeLayer]()
     
-    //MARK: properties
-    var startLocation : CGPoint = CGPointFromString("0")
-    var layer : CAShapeLayer?
+    var drawAreaColor : UIColor = UIColor.white;
     
-    // used for drawing freeform (pencil). Remember over time where last freeform point was, to draw to new freeform point.
-    var lastPoint : CGPoint?
-    var currentPoint : CGPoint?
+    //MARK: properties
+    var layer : CAShapeLayer?
     
     // if drawing with pencil, need to remember the path over time.
     var currentShape: BaseShape?
@@ -59,6 +56,8 @@ class ViewController: UIViewController, UIAlertViewDelegate {
         
         self.trashButton .isEnabled = false
         self.undoButton .isEnabled  = false
+        
+        self .drawAreaColor = drawArea .backgroundColor!
         
     }
 
@@ -152,7 +151,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
      *  should result in blank drawing.
      */
     @IBAction func clearDrawings(_ sender: UIButton) {
-        let alertView = UIAlertController(title : "Remove All Drawings", message : "Are you sure?", preferredStyle: .actionSheet)
+        let alertView = UIAlertController(title : "Remove All Drawings", message : "Are you sure?", preferredStyle: .alert)
         
         alertView.addAction(UIAlertAction( title : "Cancel", style : .cancel))
         alertView.addAction( UIAlertAction( title : "Delete all", style : .destructive)
@@ -182,12 +181,20 @@ class ViewController: UIViewController, UIAlertViewDelegate {
      *   save the current images as a photo, using current datetime.
      */
     @IBAction func saveToPhotoAlbum(_ sender: UIButton) {
+        drawArea .backgroundColor = UIColor .white
         let dateFormatter = DateFormatter()
         dateFormatter .dateStyle = .short
         dateFormatter .timeStyle = .medium
         // change times from HH:mm:ss to HH-mm-ss to prevent conflicts with special OS characters
         let imageName = "MyDrawing " + dateFormatter .string(from: Date()) .replacingOccurrences(of: "/", with: "-")
         ImageUtilities .saveViewLayerToPngFileInDocumentsFolder( fileName: imageName, view: self .view, bounds: self .view .frame, opaque: true )
+        
+        drawArea .backgroundColor = self .drawAreaColor
+        
+        // show dialog, notify that file has been saved.
+        let alertView = UIAlertController(title : "Saved Image", message : "Image has been saved to the documents folder.", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction( title : "OK", style : .default))
+        self.present(alertView, animated: true, completion: nil)
     }
     
 	
